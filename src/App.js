@@ -1,34 +1,73 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { useRouterHistory } from "react-router";
+// import { createBrowserHistory } from "history";
+
 import styled from "styled-components";
 
-const StyledText = styled.p`
+const H2 = styled.h2`
+  font-size: 1.5em;
   color: red;
-  font-size: 2em;
-  border: 1px solid red;
   padding: 0.5em;
+  border: 1px solid red;
 `;
 
-function App() {
+export default function BasicExample() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <StyledText>Here a styled Text</StyledText>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router basename="hotjar">
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about/">About</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+        </ul>
+
+        <hr />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+// You can think of these components as "pages"
+// in your app.
+
+function Home() {
+  return (
+    <div>
+      <H2>Home???</H2>
     </div>
   );
 }
 
-export default App;
+function About() {
+  return (
+    <div>
+      <H2>About??</H2>
+    </div>
+  );
+}
+
+function Dashboard() {
+  return (
+    <div>
+      <H2>Dashboard?</H2>
+    </div>
+  );
+}
